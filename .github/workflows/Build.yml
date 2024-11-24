@@ -3,28 +3,38 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Oder der Branch, von dem du pushen möchtest
+      - main  # Der Branch, auf den du pushen möchtest
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # Schritt 1: Checkout des Repositories
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Schritt 2: Node.js Setup
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '20'  # Setze hier die Node.js-Version für dein Projekt
 
+      # Schritt 3: Installiere die Abhängigkeiten
       - name: Install dependencies
         run: npm install
 
+      # Schritt 4: Baue das Projekt
       - name: Build project
-        run: npm run build  # Hier läuft der Build-Prozess in GitHub Actions
+        run: npm run build  # Der Build-Befehl, der das Projekt erstellt (je nach Framework unterschiedlich)
 
+      # Schritt 5: Überprüfen des Verzeichnisses (Debugging)
+      - name: List files in the build directory
+        run: ls -al ./dist  # Überprüft den Inhalt des Verzeichnisses, das die gebauten Dateien enthält
+
+      # Schritt 6: Deploy auf GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Automatisches Token von GitHub
-          publish_dir: ./dist  # Das Verzeichnis, das die gebauten Dateien enthält
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Nutzt das von GitHub bereitgestellte Token
+          publish_dir: ./dist  # Gib den Pfad zum Verzeichnis mit den gebauten Dateien an
