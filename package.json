@@ -1,0 +1,12 @@
+{
+  "name": "supabase-project",
+  "version": "1.0.0",
+  "description": "Supabase integration project",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0"
+  }
+}
