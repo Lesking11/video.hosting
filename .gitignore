@@ -1,0 +1,17 @@
+# Node.js Dependencies
+node_modules/
+
+# Build-Ordner von Parcel (wird bei jedem Build neu erstellt)
+dist/
+
+# Log-Dateien
+*.log
+
+# Editor-Dateien, z.B. von Visual Studio Code
+.vscode/
+
+# macOS-Daten
+.DS_Store
+
+# Windows-Daten
+Thumbs.db
