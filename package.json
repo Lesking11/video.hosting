@@ -4,9 +4,13 @@
   "description": "Supabase integration project",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
   }
 }
