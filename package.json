@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "react-scripts build"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.0"
