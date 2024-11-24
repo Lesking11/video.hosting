@@ -3,30 +3,36 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Ersetze 'main', falls deine Hauptbranch anders heißt
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20' # Du kannst hier eine andere Version angeben, wenn nötig
+    - name: Clean repository
+      run: |
+        git clean -fdx
+        git reset --hard
 
-      - name: Install dependencies
-        run: |
-          npm install
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
-      - name: Build project
-        run: |
-          npm run build
+    - name: Install dependencies
+      run: |
+        npm install
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+    - name: Build project
+      run: |
+        npm run build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
